@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react'
-import { Button, Paper, Avatar, Tooltip, IconButton, Modal, TextField } from '@material-ui/core';
-import { Delete, Close, Done } from '@material-ui/icons';
+import React from 'react'
+import { Paper, Avatar} from '@material-ui/core';
 
 import UserActions from './UserActions'
 
@@ -35,4 +34,3 @@ const User = (props) => {
 
 export default User;
 
-// MuiAvatar-root MuiAvatar-circle

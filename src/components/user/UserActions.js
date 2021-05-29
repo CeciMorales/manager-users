@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import { Button, Paper, Avatar, Tooltip, IconButton, Modal, TextField } from '@material-ui/core';
+import { Tooltip, IconButton } from '@material-ui/core';
 import { Delete, Close, Done } from '@material-ui/icons';
 
 import UserContext from '../../context/user/UserContext'

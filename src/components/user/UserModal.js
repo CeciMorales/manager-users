@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Button, Paper, Avatar, Tooltip, IconButton, Modal, TextField, FormControlLabel} from '@material-ui/core';
-import { Delete, Close, Done } from '@material-ui/icons';
+import { Button, Modal, TextField, FormControlLabel} from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
 
 import UserContext from '../../context/user/UserContext'
@@ -103,16 +102,7 @@ const UserModal = (props) => {
                             }
                             label="is active"
                         />
-                        {/**
-                        <Checkbox
-                            name="isActive"
-                            label="is active"
-                            defaultChecked
-                            onChange={handleCheckboxChange}
-                        />
-                        <p>is Active </p>
-
-                         */}
+                      
                         </div>
 
                         

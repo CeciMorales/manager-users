@@ -1,7 +1,4 @@
-import React, {useContext, useEffect} from 'react'
-import { Button, Paper, Avatar, Tooltip, IconButton, Modal, TextField } from '@material-ui/core';
-import { Delete, Close, Done } from '@material-ui/icons';
-
+import React, {useContext} from 'react'
 
 import User from './User'
 
@@ -10,7 +7,7 @@ import UserContext from '../../context/user/UserContext'
 
 const UserList = () => {
 
-  const { users, getUsers } = useContext(UserContext);
+  const { users } = useContext(UserContext);
 
     return (
         <>

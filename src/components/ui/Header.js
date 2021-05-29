@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { Button, Paper, Avatar, Tooltip, IconButton, Modal, TextField } from '@material-ui/core';
-import { Delete, Close, Done } from '@material-ui/icons';
+import React, { useContext} from 'react'
+import { Button} from '@material-ui/core';
 
 import UserContext from '../../context/user/UserContext'
 
@@ -12,9 +11,7 @@ const Header = () => {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
-        console.log('abrir modal');
         setOpen(true);
-        console.log(open)
       };
     
       const handleClose = () => {

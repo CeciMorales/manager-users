@@ -30,7 +30,6 @@ const UserState = (props) => {
     const [state, dispatch] = useReducer(UserReducer, initialState);
 
     const getUsers = () => {
-        console.log('hola')
        
         dispatch({
             type: 'GET_USERS',
@@ -40,7 +39,6 @@ const UserState = (props) => {
 
     const addUser = (newUser) => {
      
-        // toDo: cambiar forma de obtener id
         let id = new Date()
         let user = {...newUser, id: id}
 
@@ -51,9 +49,7 @@ const UserState = (props) => {
     }
 
     const deleteUser = (id) => {
-        //console.log('delete user', id);
-        //console.log('restante', state.users.filter((item) => item.id !== id))
-        
+    
         dispatch({
             type: 'DELETE_USER',
             payload: state.users.filter((item) => item.id !== id)
@@ -69,7 +65,6 @@ const UserState = (props) => {
 
     }
 
-    // todo: cambiar borde de imagen
 
     return (
         <UserContext.Provider
