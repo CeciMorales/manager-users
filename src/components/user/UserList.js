@@ -1,13 +1,15 @@
-import React, {useContext} from 'react'
-
+import React, {useEffect, useContext, useMemo} from 'react'
 import User from './User'
-
 import UserContext from '../../context/user/UserContext'
 
 
 const UserList = () => {
 
-  const { users } = useContext(UserContext);
+    const { users, getUsers} = useContext(UserContext);
+
+    useEffect(() => {
+      getUsers();
+    }, [users]);
 
     return (
         <>

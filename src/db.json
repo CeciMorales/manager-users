@@ -1,0 +1,37 @@
+{
+  "users": [
+    {
+      "firstName": "hola",
+      "lastName": "adios",
+      "email": "first@gmail.com",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTMehqepY4aP7jp9SNR7KnUFhNHK9qWHo46g&usqp=CAU",
+      "isActive": true,
+      "id": "44df2af9-3a9d-4748-9079-363a76c78cfd"
+    },
+    {
+      "firstName": "hola",
+      "lastName": "pembe",
+      "email": "ceci@gmail.com",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTMehqepY4aP7jp9SNR7KnUFhNHK9qWHo46g&usqp=CAU",
+      "isActive": true,
+      "id": "0c41f8c2-55bd-4b95-a5ac-c156f9f33622"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

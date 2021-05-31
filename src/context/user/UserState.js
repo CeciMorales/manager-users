@@ -1,80 +1,113 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useMemo } from 'react';
+import axios from 'axios';
+
+
 import UserReducer from './UserReducer';
 import UserContext from './UserContext';
 
-
 const UserState = (props) => {
 
+    const { v4: uuidv4 } = require('uuid');
+
     const initialState = {
-        users: [
-            {
-                id: 1,
-                firstName: 'Ceci',
-                lastName: 'Morales',
-                email: 'cecimoar@hotmail.com',
-                image: 'https://www.bunko.pet/__export/1611708686389/sites/debate/img/2021/01/26/9_datos_interesantes_sobre_los_perros_pug_que_tal_vez_no_sabxas.jpeg_1404015752.jpeg',
-                isActive: true,
-            },
-            {
-                id: 2,
-                firstName: 'Rosi ',
-                lastName: 'Miranda',
-                email: 'rosi@hotmail.com',
-                image: 'https://cdn2www.mundo.com/fotos/201503/pug-031-600x456.jpg',
-                isActive: false,
-            }  
-        ]
+        users: []
     }
 
 
     const [state, dispatch] = useReducer(UserReducer, initialState);
 
-    const getUsers = () => {
-       
-        dispatch({
-            type: 'GET_USERS',
-            payload:  state.users
-        })
+    const getUsers = async () => {
+        
+        try {
+            const result = await axios.get('http://localhost:3000/users');
+            dispatch({
+                type: 'GET_USERS',
+                payload:  result.data
+            })
+        } catch (error) {
+            console.error(error);
+        }
     }
 
-    const addUser = (newUser) => {
+    const addUser = async (newUser) => {
      
-        let id = new Date()
+        let id = uuidv4();
         let user = {...newUser, id: id}
 
-        dispatch({
-            type: 'ADD_USER',
-            payload: [...state.users, user]
-        })
+        try {
+            await axios.post('http://localhost:3000/users', user);
+            dispatch({
+                type: 'ADD_USER',
+                //payload: [...state.users, user]
+                payload: state.users
+            })
+
+        } catch (error) {
+            console.error(error);
+        } 
     }
 
-    const deleteUser = (id) => {
-    
-        dispatch({
-            type: 'DELETE_USER',
-            payload: state.users.filter((item) => item.id !== id)
-        })
+    const deleteUser = async (id) => {
+
+        try {
+            await axios.delete('http://localhost:3000/users/' + id);
+            dispatch({
+                type: 'DELETE_USER',
+                //payload: state.users.filter((item) => item.id !== id)
+                payload: state.users
+            })
+
+        } catch (error) {
+            console.error(error);
+        }
 
     }
 
-    const changeIsActive = (id) => {
-      dispatch({
-            type: 'CHANGE_IS_ACTIVE',
-            payload: state.users.map((user) => user.id == id ? {...user, isActive: !user.isActive} : user)
-        })
+    const changeIsActive = async (user) => {
+
+        try {
+            await axios.put('http://localhost:3000/users/' + user.id, {
+                ...user,
+                isActive : !user.isActive
+            });
+
+            dispatch({
+                type: 'CHANGE_IS_ACTIVE',
+                //payload: state.users.map((item) => item.id == user.id ? {...item, isActive: !item.isActive} : item)
+                payload: state.users
+            })
+
+
+        } catch (error) {
+            console.error(error);
+        }
+
+        
 
     }
+
+    /*const value = useMemo(() => {
+        return {
+            users: state.users,
+            getUsers,
+            addUser, 
+            deleteUser, 
+            changeIsActive
+        }
+    }, [state])*/
 
 
     return (
         <UserContext.Provider
-            value={{
-                users: state.users,
-                getUsers,
-                addUser, 
-                deleteUser, 
-                changeIsActive
-            }}
+            value={
+                {
+                    users: state.users,
+                    getUsers,
+                    addUser, 
+                    deleteUser, 
+                    changeIsActive
+                }
+            }
         >
             {props.children}
 

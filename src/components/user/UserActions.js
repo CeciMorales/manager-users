@@ -16,13 +16,13 @@ const UserActions = (props) => {
           user.isActive
           ?
             <Tooltip title="desactivar">
-              <IconButton onClick={() => changeIsActive(user.id)}>
+              <IconButton onClick={() => changeIsActive(user)}>
                 <Close></Close>
               </IconButton>
             </Tooltip>
           :
             <Tooltip title="activar">
-              <IconButton onClick={() => changeIsActive(user.id)}>
+              <IconButton onClick={() => changeIsActive(user)}>
                 <Done></Done>
               </IconButton>
             </Tooltip>
