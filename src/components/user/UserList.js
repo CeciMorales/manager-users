@@ -1,4 +1,4 @@
-import React, {useEffect, useContext, useMemo} from 'react'
+import React, {useEffect, useContext} from 'react'
 import User from './User'
 import UserContext from '../../context/user/UserContext'
 
@@ -9,21 +9,17 @@ const UserList = () => {
 
     useEffect(() => {
       getUsers();
-    }, [users]);
+    }, []);
 
     return (
         <>
-        <div className="users-list">
-       
-        {
-          users.map((user) => (
-            <User key={user.id} value={user}></User>
-          ))
-        }
-        
-        </div>
-       
-            
+          <div className="users-list">
+            {
+              users.map((user) => (
+                <User key={user.id} value={user}></User>
+              ))
+            }
+          </div>
         </>
     )
 }

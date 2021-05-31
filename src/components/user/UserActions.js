@@ -7,7 +7,20 @@ import UserContext from '../../context/user/UserContext'
 const UserActions = (props) => {
 
   const user = props.value
-  const { deleteUser, changeIsActive } = useContext(UserContext);
+  const { deleteUser, changeIsActive, getUsers } = useContext(UserContext);
+
+  const handleIsActive = async () => {
+    await changeIsActive(user)
+    getUsers();
+    // {() => changeIsActive(user)
+  }
+
+  const handleDelete = async () => {
+    await deleteUser(user.id);
+    getUsers();
+    //() => deleteUser(user.id)
+
+  }
 
     return (
         <>
@@ -16,20 +29,20 @@ const UserActions = (props) => {
           user.isActive
           ?
             <Tooltip title="desactivar">
-              <IconButton onClick={() => changeIsActive(user)}>
+              <IconButton onClick={() => handleIsActive()}>
                 <Close></Close>
               </IconButton>
             </Tooltip>
           :
             <Tooltip title="activar">
-              <IconButton onClick={() => changeIsActive(user)}>
+              <IconButton onClick={() => handleIsActive()}>
                 <Done></Done>
               </IconButton>
             </Tooltip>
           }
            
             <Tooltip title="eliminar">
-              <IconButton onClick={() => deleteUser(user.id)}>
+              <IconButton onClick={() => handleDelete()}>
                 <Delete></Delete>
               </IconButton>
             </Tooltip>

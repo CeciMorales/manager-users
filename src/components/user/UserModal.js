@@ -8,7 +8,7 @@ const UserModal = (props) => {
 
     const { onClose, selectedValue, open } = props;
 
-    const { addUser } = useContext(UserContext);
+    const { addUser, getUsers } = useContext(UserContext);
 
     const [newUser, setNewUser] = useState({
         firstName: '',
@@ -37,11 +37,12 @@ const UserModal = (props) => {
         })
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         console.log('enviando datos', newUser)
-        addUser(newUser);
+        await addUser(newUser);
         onClose(selectedValue);
+        getUsers();
     }
 
     return (

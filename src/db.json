@@ -3,35 +3,26 @@
     {
       "firstName": "hola",
       "lastName": "adios",
+      "email": "ceci@hotmail.com",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTMehqepY4aP7jp9SNR7KnUFhNHK9qWHo46g&usqp=CAU",
+      "isActive": false,
+      "id": "5c59ab3b-99ab-4a4f-bfda-f6eeed4779f6"
+    },
+    {
+      "firstName": "HOLA",
+      "lastName": "second",
       "email": "first@gmail.com",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTMehqepY4aP7jp9SNR7KnUFhNHK9qWHo46g&usqp=CAU",
       "isActive": true,
-      "id": "44df2af9-3a9d-4748-9079-363a76c78cfd"
+      "id": "922eeb9a-5bcd-4ea7-8da7-5b7a4c420938"
     },
     {
-      "firstName": "hola",
-      "lastName": "pembe",
-      "email": "ceci@gmail.com",
+      "firstName": "ceci",
+      "lastName": "morales",
+      "email": "mavi@gmail.com",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTMehqepY4aP7jp9SNR7KnUFhNHK9qWHo46g&usqp=CAU",
       "isActive": true,
-      "id": "0c41f8c2-55bd-4b95-a5ac-c156f9f33622"
+      "id": "10ceed8b-137c-4883-85ce-4dfdb141f612"
     }
-  ],
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

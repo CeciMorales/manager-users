@@ -1,4 +1,4 @@
-import React, { useReducer, useMemo } from 'react';
+import React, { useReducer } from 'react';
 import axios from 'axios';
 
 
@@ -77,25 +77,10 @@ const UserState = (props) => {
                 payload: state.users
             })
 
-
         } catch (error) {
             console.error(error);
         }
-
-        
-
     }
-
-    /*const value = useMemo(() => {
-        return {
-            users: state.users,
-            getUsers,
-            addUser, 
-            deleteUser, 
-            changeIsActive
-        }
-    }, [state])*/
-
 
     return (
         <UserContext.Provider
