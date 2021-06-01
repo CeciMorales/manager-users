@@ -4,23 +4,9 @@ import { Delete, Close, Done } from '@material-ui/icons';
 
 import UserContext from '../../context/user/UserContext'
 
-const UserActions = (props) => {
+const UserActions = ({user}) => {
 
-  const user = props.value
   const { deleteUser, changeIsActive, getUsers } = useContext(UserContext);
-
-  const handleIsActive = async () => {
-    await changeIsActive(user)
-    getUsers();
-    // {() => changeIsActive(user)
-  }
-
-  const handleDelete = async () => {
-    await deleteUser(user.id);
-    getUsers();
-    //() => deleteUser(user.id)
-
-  }
 
     return (
         <>
@@ -29,20 +15,19 @@ const UserActions = (props) => {
           user.isActive
           ?
             <Tooltip title="desactivar">
-              <IconButton onClick={() => handleIsActive()}>
+              <IconButton onClick={() => changeIsActive(user)}>
                 <Close></Close>
               </IconButton>
             </Tooltip>
           :
             <Tooltip title="activar">
-              <IconButton onClick={() => handleIsActive()}>
+              <IconButton onClick={() => changeIsActive(user)}>
                 <Done></Done>
               </IconButton>
             </Tooltip>
-          }
-           
+          } 
             <Tooltip title="eliminar">
-              <IconButton onClick={() => handleDelete()}>
+              <IconButton onClick={() => deleteUser(user.id)}>
                 <Delete></Delete>
               </IconButton>
             </Tooltip>

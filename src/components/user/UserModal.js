@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Button, Modal, TextField, FormControlLabel} from '@material-ui/core';
+import { Button, Modal, TextField, FormControlLabel } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
 
 import UserContext from '../../context/user/UserContext'
@@ -18,11 +18,11 @@ const UserModal = (props) => {
         isActive: true
     });
 
-    const handleClose = () => {
+    const closeHandler = () => {
         onClose(selectedValue);
     };
 
-    const handleInputChange = (event) => {
+    const inputChangeHandler = (event) => {
         // console.log(event.target.name)
         setNewUser({
             ...newUser,
@@ -30,19 +30,18 @@ const UserModal = (props) => {
         })
     }
 
-    const handleCheckboxChange = (event) => {
+    const checkboxChangeHandler = (event) => {
         setNewUser({
             ...newUser,
             [event.target.name] : event.target.checked
         })
     }
 
-    const handleSubmit = async (event) => {
+    const submitHandler = async (event) => {
         event.preventDefault();
         console.log('enviando datos', newUser)
         await addUser(newUser);
         onClose(selectedValue);
-        getUsers();
     }
 
     return (
@@ -50,14 +49,14 @@ const UserModal = (props) => {
             <Modal open={open}> 
                 <div className="add-user-modal">
                     <h1>Agregar Usuario</h1>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={submitHandler}>
                         <div>
                         <TextField 
                             className="user-modal-input" 
                             variant="outlined" 
                             label="first name"
                             name="firstName"
-                            onChange={handleInputChange}
+                            onChange={inputChangeHandler}
                             required
                         >
                             
@@ -67,7 +66,7 @@ const UserModal = (props) => {
                             variant="outlined" 
                             label="last name"
                             name="lastName"
-                            onChange={handleInputChange}
+                            onChange={inputChangeHandler}
                             required
                         >
 
@@ -77,7 +76,7 @@ const UserModal = (props) => {
                             variant="outlined" 
                             label="email"
                             name="email"
-                            onChange={handleInputChange}
+                            onChange={inputChangeHandler}
                             required
                         >
 
@@ -87,7 +86,7 @@ const UserModal = (props) => {
                             variant="outlined" 
                             label="image"
                             name="image"
-                            onChange={handleInputChange}
+                            onChange={inputChangeHandler}
                             required
                         >
 
@@ -98,7 +97,7 @@ const UserModal = (props) => {
                                     name="isActive"
                                     label="is active"
                                     defaultChecked
-                                    onChange={handleCheckboxChange}
+                                    onChange={checkboxChangeHandler}
                                 />
                             }
                             label="is active"
@@ -106,10 +105,8 @@ const UserModal = (props) => {
                       
                         </div>
 
-                        
-
                         <div className="actions">
-                            <Button onClick={handleClose}>Cerrar</Button>
+                            <Button onClick={closeHandler}>Cerrar</Button>
                             <Button type="submit">Agregar</Button>
                         
                         </div>

@@ -1,7 +1,6 @@
 import React, { useReducer } from 'react';
 import axios from 'axios';
 
-
 import UserReducer from './UserReducer';
 import UserContext from './UserContext';
 
@@ -17,69 +16,61 @@ const UserState = (props) => {
     const [state, dispatch] = useReducer(UserReducer, initialState);
 
     const getUsers = async () => {
-        
-        try {
-            const result = await axios.get('http://localhost:3000/users');
-            dispatch({
-                type: 'GET_USERS',
-                payload:  result.data
+
+        await axios.get('http://localhost:3000/users')
+            .then(response => {
+                dispatch({
+                    type: 'GET_USERS',
+                    payload: response.data
+                })
+            }).catch(error => {
+                console.error(error);
             })
-        } catch (error) {
-            console.error(error);
-        }
     }
 
     const addUser = async (newUser) => {
-     
+
         let id = uuidv4();
         let user = {...newUser, id: id}
 
-        try {
-            await axios.post('http://localhost:3000/users', user);
-            dispatch({
-                type: 'ADD_USER',
-                //payload: [...state.users, user]
-                payload: state.users
+        await axios.post('http://localhost:3000/users', user)
+            .then(response => {
+                dispatch({
+                    type: 'ADD_USER',
+                    payload: [...state.users, user]
+                }) 
+            }).catch(error => {
+                console.error(error);
             })
-
-        } catch (error) {
-            console.error(error);
-        } 
     }
 
     const deleteUser = async (id) => {
 
-        try {
-            await axios.delete('http://localhost:3000/users/' + id);
-            dispatch({
-                type: 'DELETE_USER',
-                //payload: state.users.filter((item) => item.id !== id)
-                payload: state.users
+        await axios.delete('http://localhost:3000/users/' + id)
+            .then(response => {
+                dispatch({
+                    type: 'DELETE_USER',
+                    payload: state.users.filter((item) => item.id !== id)
+                }) 
+            }).catch(error => {
+                console.error(error);
             })
-
-        } catch (error) {
-            console.error(error);
-        }
 
     }
 
     const changeIsActive = async (user) => {
 
-        try {
-            await axios.put('http://localhost:3000/users/' + user.id, {
-                ...user,
-                isActive : !user.isActive
-            });
-
+        await axios.put('http://localhost:3000/users/' + user.id, {
+            ...user,
+            isActive : !user.isActive
+        }).then(response => {
             dispatch({
                 type: 'CHANGE_IS_ACTIVE',
-                //payload: state.users.map((item) => item.id == user.id ? {...item, isActive: !item.isActive} : item)
-                payload: state.users
-            })
-
-        } catch (error) {
+                payload: state.users.map((item) => item.id == user.id ? {...item, isActive: !item.isActive} : item)
+            }) 
+        }).catch(error => {
             console.error(error);
-        }
+        })
     }
 
     return (

@@ -3,10 +3,7 @@ import { Paper, Avatar} from '@material-ui/core';
 
 import UserActions from './UserActions'
 
-const User = (props) => {
-
-  const user = props.value
-
+const User = ({user}) => {
 
     return (
         <>
@@ -24,7 +21,7 @@ const User = (props) => {
               <span className="user-email"> ({ user.email }) </span>
             </div>
           </div>
-          <UserActions value={user}></UserActions>
+          <UserActions user={user}></UserActions>
           
         </Paper>
         
