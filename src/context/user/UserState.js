@@ -9,9 +9,9 @@ const UserState = (props) => {
     const { v4: uuidv4 } = require('uuid');
 
     const initialState = {
-        users: []
+        users: [],
+        selectedUser: null
     }
-
 
     const [state, dispatch] = useReducer(UserReducer, initialState);
 
@@ -21,6 +21,19 @@ const UserState = (props) => {
             .then(response => {
                 dispatch({
                     type: 'GET_USERS',
+                    payload: response.data
+                })
+            }).catch(error => {
+                console.error(error);
+            })
+    }
+
+    const getUser = async (id) => {
+        await axios.get('http://localhost:3000/users/' + id)
+            .then(response => {
+                console.log("id selected user", response.data);
+                dispatch({
+                    type: 'GET_USER',
                     payload: response.data
                 })
             }).catch(error => {
@@ -80,7 +93,9 @@ const UserState = (props) => {
             value={
                 {
                     users: state.users,
+                    selectedUser: state.selectedUser,
                     getUsers,
+                    getUser,
                     addUser, 
                     deleteUser, 
                     changeIsActive
