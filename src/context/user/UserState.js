@@ -35,10 +35,12 @@ const UserState = (props) => {
 
         await axios.post('http://localhost:3000/users', user)
             .then(response => {
+                
                 dispatch({
                     type: 'ADD_USER',
-                    payload: [...state.users, user]
-                }) 
+                    payload: user
+                    
+                })       
             }).catch(error => {
                 console.error(error);
             })
@@ -50,7 +52,7 @@ const UserState = (props) => {
             .then(response => {
                 dispatch({
                     type: 'DELETE_USER',
-                    payload: state.users.filter((item) => item.id !== id)
+                    payload: id
                 }) 
             }).catch(error => {
                 console.error(error);
@@ -66,7 +68,7 @@ const UserState = (props) => {
         }).then(response => {
             dispatch({
                 type: 'CHANGE_IS_ACTIVE',
-                payload: state.users.map((item) => item.id == user.id ? {...item, isActive: !item.isActive} : item)
+                payload: user.id
             }) 
         }).catch(error => {
             console.error(error);

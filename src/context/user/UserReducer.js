@@ -6,27 +6,24 @@ export default (state, action) => {
     switch(type) {
 
         case GET_USERS:
+            
             return {
-                ...state, 
                 users: payload
             }
-
+            
         case ADD_USER:
             return {
-                ...state,
-                users: payload
+                users: [...state.users, payload]
             }
-        
-        case DELETE_USER:
+            
+        case DELETE_USER:            
             return {
-                ...state, 
-                users: payload
+                users: state.users.filter((user) => user.id !== payload)
             }
 
         case CHANGE_IS_ACTIVE:
             return {
-                ...state,
-                users: payload
+                users: state.users.map((user) => user.id == payload ? {...user, isActive: !user.isActive} : user)
             }
     }
 }
