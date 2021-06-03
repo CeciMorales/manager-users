@@ -25,6 +25,13 @@ function App() {
       <UserState>
         <Router>
           <Switch>
+          <Route path="/" exact>
+            <Link to="/users">
+              <Button>Home</Button>
+            </Link>
+              
+            </Route>
+
             <Route path="/users" exact>
               <Header></Header>
               <UserList></UserList>

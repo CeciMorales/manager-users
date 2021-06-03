@@ -5,7 +5,7 @@
       "lastName": "adios",
       "email": "ceci@gmail.com",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTMehqepY4aP7jp9SNR7KnUFhNHK9qWHo46g&usqp=CAU",
-      "isActive": true,
+      "isActive": false,
       "id": "66b02149-0404-4a13-a091-2758dcef73ed"
     },
     {
