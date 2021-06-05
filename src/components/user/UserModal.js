@@ -39,7 +39,7 @@ const UserModal = (props) => {
 
     const submitHandler = async (event) => {
         event.preventDefault();
-        console.log('enviando datos', newUser)
+        //console.log('enviando datos', newUser)
         await addUser(newUser);
         onClose(selectedValue);
     }
@@ -102,7 +102,6 @@ const UserModal = (props) => {
                             }
                             label="is active"
                         />
-                      
                         </div>
 
                         <div className="actions">

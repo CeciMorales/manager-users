@@ -6,7 +6,7 @@ import UserContext from '../../context/user/UserContext'
 
 const UserActions = ({user}) => {
 
-  const { deleteUser, changeIsActive, getUsers } = useContext(UserContext);
+  const { deleteUser, changeIsActive } = useContext(UserContext);
 
     return (
         <>

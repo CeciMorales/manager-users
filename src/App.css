@@ -42,3 +42,31 @@
   justify-content: flex-end;
 }
 
+.filter-wrapper {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.filter-wrapper TextField {
+  height: 500px !important;
+}
+
+.radio-wrapper {
+  display: block !important;
+}
+
+.pagination-wrapper ul {
+  list-style-type: none;
+  display: inline-block;
+}
+
+.pagination-wrapper li {
+  display: inline-block;
+  margin-left: 20px;
+  background-color: #3f50b5;
+  padding: 10px 15px;
+  color: white;
+  border-radius: 5px;
+}
+
+

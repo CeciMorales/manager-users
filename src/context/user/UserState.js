@@ -31,7 +31,7 @@ const UserState = (props) => {
     const getUser = async (id) => {
         await axios.get('http://localhost:3000/users/' + id)
             .then(response => {
-                console.log("id selected user", response.data);
+                //console.log("id selected user", response.data);
                 dispatch({
                     type: 'GET_USER',
                     payload: response.data

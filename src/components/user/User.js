@@ -7,7 +7,7 @@ import UserContext from '../../context/user/UserContext'
 import UserActions from './UserActions'
 
 const User = ({user}) => {
-  const { getUser } = useContext(UserContext);
+  //const { getUser } = useContext(UserContext);
 
     return (
         <>
@@ -18,7 +18,6 @@ const User = ({user}) => {
                 src={user.image}
                 style={ user.isActive ? { border: '5px solid #3CB371' } : { border: '5px solid #FF6347' } }
                 >
-                
               </Avatar>
             </Link>
             <div className="user-name-container">

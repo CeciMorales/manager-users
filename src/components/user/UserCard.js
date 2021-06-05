@@ -1,17 +1,12 @@
 import React, {useContext, useEffect} from 'react'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useParams
-  } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import { Tooltip, IconButton } from '@material-ui/core';
+import { Delete, Close, Done } from '@material-ui/icons';
 
 import UserContext from '../../context/user/UserContext'
 
@@ -33,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
         flex: '1 0 auto',
     },
     cover: {
-        width: 151,
+        width: 400,
     },
     controls: {
         display: 'flex',
@@ -49,12 +44,17 @@ const UserCard = () => {
     const theme = useTheme();
     const {id} = useParams();
 
-    const { getUser, selectedUser } = useContext(UserContext);
+    const { getUser, selectedUser, changeIsActive } = useContext(UserContext);
 
     useEffect(() => {
         getUser(id);
-        console.log("use effect",id);
+        console.log()
     }, []);
+
+    const clickHandler = () => {
+        changeIsActive(selectedUser);
+        getUser(id);
+    }
 
     return (
         <>
@@ -74,6 +74,23 @@ const UserCard = () => {
                         <p style={{color: '#FF6347'}}>{selectedUser.firstName} is not active</p>
                         } 
                     </Typography>
+                    <div className="right-side">
+                    {
+                    selectedUser.isActive
+                    ?
+                        <Tooltip title="desactivar">
+                        <IconButton onClick={clickHandler}>
+                            <Close></Close>
+                        </IconButton>
+                        </Tooltip>
+                    :
+                        <Tooltip title="activar">
+                        <IconButton onClick={clickHandler}>
+                            <Done></Done>
+                        </IconButton>
+                        </Tooltip>
+                    } 
+                    </div>
                     </CardContent>
                     <div className={classes.controls}>
                     <Typography variant="subtitle1" color="textSecondary">
