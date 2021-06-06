@@ -11,16 +11,16 @@ const UserFilter = ({
     searchTermIsActive, setSearchTermIsActive
 }) => {
 
-
+/*
     const inputChangeHandler = (event) => {
         console.log(event.target.name)
         /*setSearchTerm({
             ...searchTerm,
             [event.target.name] : event.target.value
-        })*/
+        })
         setSearchTermInput(event.target.value)
         setSearchTermIsActive(event.target.value)
-    }
+    }*/
 
 
     return (

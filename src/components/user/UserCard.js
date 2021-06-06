@@ -1,5 +1,11 @@
 import React, {useContext, useEffect} from 'react'
 import { useParams } from "react-router-dom";
+
+// cosas de redux
+import { useSelector, useDispatch } from 'react-redux';
+import { getUserR, changeIsActiveR } from '../../redux/actions/userActions';
+import axios from 'axios';
+
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -44,39 +50,68 @@ const UserCard = () => {
     const theme = useTheme();
     const {id} = useParams();
 
-    const { getUser, selectedUser, changeIsActive } = useContext(UserContext);
+    //const { getUser, selectedUser, changeIsActive } = useContext(UserContext);
 
+    // ! cosas de redux
+    const selectedUserRedux = useSelector((state) => state.allUsers.selectedUser);
+    const dispatch = useDispatch();
+    const fetchUser = async (id) => {
+        await axios.get('http://localhost:3000/users/' + id)
+        .then(response => {
+            //console.log("id selected user", response.data);
+            dispatch(getUserR(response.data));
+        }).catch(error => {
+            console.error(error);
+        })
+    }
+
+    const updateUser = async () => {
+        await axios.put('http://localhost:3000/users/' + selectedUserRedux.id, {
+                ...selectedUserRedux,
+                isActive : !selectedUserRedux.isActive
+            }).then(response => {
+                dispatch(changeIsActiveR(selectedUserRedux.id))
+            }).catch(error => {
+                console.error(error);
+            })
+      }
     useEffect(() => {
-        getUser(id);
-        console.log()
+        //getUser(id);
+        fetchUser(id)
+        console.log(selectedUserRedux)
     }, []);
 
     const clickHandler = () => {
-        changeIsActive(selectedUser);
-        getUser(id);
+        // * context
+        //changeIsActive(selectedUser);
+        //getUser(id);
+
+        // ! redux
+        updateUser();
+        fetchUser(id);
     }
 
     return (
         <>
-            {selectedUser !== null
+            {selectedUserRedux !== null
             ?
             <Card className={classes.root}>
                 <div className={classes.details}>
                     <CardContent className={classes.content}>
                     <Typography component="h5" variant="h5">
-                        {selectedUser.firstName} {selectedUser.lastName}
+                        {selectedUserRedux.firstName} {selectedUserRedux.lastName}
                     </Typography>
                     <Typography variant="subtitle1" color="textSecondary">
-                        { selectedUser.isActive
+                        { selectedUserRedux.isActive
                         ?
-                        <p style={{ color: '#3CB371' }}>{selectedUser.firstName} is active</p>
+                        <p style={{ color: '#3CB371' }}>{selectedUserRedux.firstName} is active</p>
                         :
-                        <p style={{color: '#FF6347'}}>{selectedUser.firstName} is not active</p>
+                        <p style={{color: '#FF6347'}}>{selectedUserRedux.firstName} is not active</p>
                         } 
                     </Typography>
                     <div className="right-side">
                     {
-                    selectedUser.isActive
+                    selectedUserRedux.isActive
                     ?
                         <Tooltip title="desactivar">
                         <IconButton onClick={clickHandler}>
@@ -94,15 +129,15 @@ const UserCard = () => {
                     </CardContent>
                     <div className={classes.controls}>
                     <Typography variant="subtitle1" color="textSecondary">
-                        {selectedUser.email}
+                        {selectedUserRedux.email}
                     </Typography>
                     
                     </div>
                 </div>
                 <CardMedia
                     className={classes.cover}
-                    image={selectedUser.image}
-                    title={selectedUser.image}
+                    image={selectedUserRedux.image}
+                    title={selectedUserRedux.image}
                 />
             </Card>
             :

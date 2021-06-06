@@ -2,43 +2,35 @@
   "users": [
     {
       "firstName": "hola",
-      "lastName": "mavi",
-      "email": "mavi@gmail.com",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTMehqepY4aP7jp9SNR7KnUFhNHK9qWHo46g&usqp=CAU",
-      "isActive": true,
-      "id": "e102dbcf-812f-4615-80c7-0f97a6fbd49d"
-    },
-    {
-      "firstName": "ceci",
-      "lastName": "morales",
+      "lastName": "adios",
       "email": "ceci@hotmail.com",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTMehqepY4aP7jp9SNR7KnUFhNHK9qWHo46g&usqp=CAU",
       "isActive": false,
-      "id": "eff0e043-6ef6-41d6-89d9-5797a21cdb35"
-    },
-    {
-      "firstName": "hola",
-      "lastName": "adios",
-      "email": "ceci@hotmail.com",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTMehqepY4aP7jp9SNR7KnUFhNHK9qWHo46g&usqp=CAU",
-      "isActive": true,
       "id": "a6448155-86c3-41e5-a5bb-271298f844e9"
     },
     {
-      "firstName": "HOLA",
-      "lastName": "adios",
-      "email": "first@gmail.com",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTMehqepY4aP7jp9SNR7KnUFhNHK9qWHo46g&usqp=CAU",
-      "isActive": true,
-      "id": "8c3e5609-76f1-4a40-b19a-50d7d57c4dcb"
-    },
-    {
       "firstName": "hola",
       "lastName": "adios",
       "email": "ceci@hotmail.com",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTMehqepY4aP7jp9SNR7KnUFhNHK9qWHo46g&usqp=CAU",
-      "isActive": true,
+      "isActive": false,
       "id": "f5ccf4ef-0532-4b67-9a23-7b7cdb45e7ab"
+    },
+    {
+      "firstName": "duda",
+      "lastName": "duda",
+      "email": "duda@gmail.com",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTMehqepY4aP7jp9SNR7KnUFhNHK9qWHo46g&usqp=CAU",
+      "isActive": true,
+      "id": "ce3ddfc0-f896-47e1-8dad-78031081f838"
+    },
+    {
+      "firstName": "hola",
+      "lastName": "adios",
+      "email": "cma@gmail.com",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTMehqepY4aP7jp9SNR7KnUFhNHK9qWHo46g&usqp=CAU",
+      "isActive": true,
+      "id": "bd2a21ad-a63a-429f-a37c-2c47d8c4bda4"
     }
   ]
 }

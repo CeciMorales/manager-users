@@ -1,4 +1,10 @@
 import React, {useState, useEffect, useContext} from 'react'
+
+// ! imports de redux
+import { useSelector, useDispatch } from 'react-redux';
+import { getUsersR } from '../../redux/actions/userActions';
+import axios from 'axios';
+
 import User from './User'
 import UserPagination from './UserPagination';
 import UserFilter from './UserFilter';
@@ -9,28 +15,37 @@ const UserList = () => {
     const [ currentPage, setCurrentPage ] = useState(1);
     const [ usersPerPage, setUsersPerPage ] = useState(5);
 
-    /*
-    const [indexOfLastUser, setIndexOfLastUser] = useState(0);
-    const [indexOfFirstUser, setIndexOfFirstUser] = useState(0);
-    const [currentUsers, setCurrentUsers] = useState([])*/
-
     const [ searchTermInput, setSearchTermInput ] = useState('');
     const [ searchTermIsActive, setSearchTermIsActive ] = useState('all');
 
-    const { users, getUsers} = useContext(UserContext);
+    // const { users, getUsers} = useContext(UserContext); context
+
+    // ! cosas de redux
+    // obtiene users del state
+    const usersRedux = useSelector((state) => state.allUsers.users);
+
+    const dispatch = useDispatch();
+
+    const fetchUsers = async () => {
+      await axios.get('http://localhost:3000/users')
+            .then(response => {
+                dispatch(getUsersR(response.data))
+            }).catch(error => {
+                console.error(error);
+            })
+    }
 
     useEffect(() => {
-      getUsers();
+      //getUsers();
+      fetchUsers(); // redux
       
     }, []);
 
     // get current user
-    //const indexOfLastUser = currentPage * usersPerPage;
-    //const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    //const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+    //const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser); context
+    const currentUsersRedux = usersRedux.slice(indexOfFirstUser, indexOfLastUser);
 
     const paginate = (pageNumber) => {
       return setCurrentPage(pageNumber)
@@ -45,15 +60,6 @@ const UserList = () => {
             return false
           }
     }
-/*
-    const setPagination = () => {
-      //let listUsers = [];
-      setIndexOfLastUser(currentPage * usersPerPage);
-      setIndexOfFirstUser(indexOfLastUser - usersPerPage);
-      setCurrentUsers(users.slice(indexOfFirstUser, indexOfLastUser))
-      //setCurrentUsers(listUsers);
-      console.log('dfjdla', currentUsers, indexOfFirstUser, indexOfLastUser)
-    }*/
 
     return (
         <>
@@ -67,14 +73,17 @@ const UserList = () => {
           <div className="users-list">
             {
               // antes era users.map...
-              currentUsers.filter(user => {
-                if (searchTermInput == '' && searchTermIsActive === "all") {
+              currentUsersRedux.filter(user => {
+                if (searchTermInput == '' 
+                  && searchTermIsActive === "all") {
                   return user;
 
-                } else if (searchTermIsActive === "all" && inputConditions(user, searchTermInput)) {
+                } else if (searchTermIsActive === "all" 
+                          && inputConditions(user, searchTermInput)) {
                   return user;
 
-                } else if (String(user.isActive) === searchTermIsActive && inputConditions(user, searchTermInput)) {
+                } else if (String(user.isActive) === searchTermIsActive 
+                          && inputConditions(user, searchTermInput)) {
                   return user
 
                 } 
@@ -89,7 +98,8 @@ const UserList = () => {
           <UserPagination 
             usersPerPage={usersPerPage} 
             setUsersPerPage={setUsersPerPage}
-            totalUsers={users.length} 
+            //totalUsers={users.length} context
+            totalUsers={usersRedux.length} // redux
             paginate={paginate}>
             
           </UserPagination>
@@ -98,32 +108,3 @@ const UserList = () => {
 }
 
 export default UserList;
-
-/**
- * {
-              // antes era users.map...
-              currentUsers.map((user) => (
-                <User key={user.id} user={user}></User>
-              ))
-            }
-
-
-
-            {
-              // antes era users.map...
-              currentUsers.filter(user => {
-                if (searchTerm == '') {
-                  return user
-                } else if (user.firstName.toLowerCase().includes(searchTerm.toLowerCase())){
-                  return user
-                }
-              }
-              ).map((user) => (
-                <User key={user.id} user={user}></User>
-              ))
-            }
-
-            const indexOfLastUser = currentPage * usersPerPage;
-    const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
- */

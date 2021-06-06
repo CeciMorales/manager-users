@@ -22,7 +22,7 @@ import UserCard from './components/user/UserCard';
 function App() {
   return (
     <>
-      <UserState>
+      {/*<UserState>*/}
         <Router>
           <Switch>
           <Route path="/" exact>
@@ -46,7 +46,7 @@ function App() {
 
           </Switch>
         </Router>
-      </UserState>
+     {/* </UserState> */}
         
     </>
   );

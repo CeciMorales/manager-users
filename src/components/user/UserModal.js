@@ -1,4 +1,10 @@
 import React, { useState, useContext } from 'react'
+
+// ! imports de redux
+import { useSelector, useDispatch } from 'react-redux';
+import { addUserR } from '../../redux/actions/userActions';
+import axios from 'axios';
+
 import { Button, Modal, TextField, FormControlLabel } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
 
@@ -6,9 +12,11 @@ import UserContext from '../../context/user/UserContext'
 
 const UserModal = (props) => {
 
+    const { v4: uuidv4 } = require('uuid');
+
     const { onClose, selectedValue, open } = props;
 
-    const { addUser, getUsers } = useContext(UserContext);
+    // * context const { addUser, getUsers } = useContext(UserContext);
 
     const [newUser, setNewUser] = useState({
         firstName: '',
@@ -37,10 +45,28 @@ const UserModal = (props) => {
         })
     }
 
-    const submitHandler = async (event) => {
+    // ! cosas de redux
+    const dispatch = useDispatch();
+
+    const createUser = async () => {
+        let id = uuidv4();
+        let user = {...newUser, id: id}
+
+        await axios.post('http://localhost:3000/users', user)
+            .then(response => {
+                
+                dispatch(addUserR(user));       
+            }).catch(error => {
+                console.error(error);
+            })
+    }
+
+    const submitHandler = (event) => {
         event.preventDefault();
         //console.log('enviando datos', newUser)
-        await addUser(newUser);
+        // * context
+        //await addUser(newUser); 
+        createUser();
         onClose(selectedValue);
     }
 

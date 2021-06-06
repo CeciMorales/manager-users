@@ -2,12 +2,9 @@ import React, {useContext} from 'react'
 import { Link } from 'react-router-dom';
 import { Paper, Avatar} from '@material-ui/core';
 
-import UserContext from '../../context/user/UserContext'
-
 import UserActions from './UserActions'
 
 const User = ({user}) => {
-  //const { getUser } = useContext(UserContext);
 
     return (
         <>
