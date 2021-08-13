@@ -16,18 +16,6 @@ export const getUserR =  (user) => {
         payload: user
     }
     
-    /*
-        await axios.get('http://localhost:3000/users/' + id)
-            .then(response => {
-                //console.log("id selected user", response.data);
-                dispatch({
-                    type: 'GET_USER',
-                    payload: response.data
-                })
-            }).catch(error => {
-                console.error(error);
-            })
-            */
 }
 
 export const addUserR =  (newUser) => {
@@ -35,22 +23,7 @@ export const addUserR =  (newUser) => {
         type: ActionTypes.ADD_USER,
         payload: newUser
     }
-    /*
 
-        let id = uuidv4();
-        let user = {...newUser, id: id}
-
-        await axios.post('http://localhost:3000/users', user)
-            .then(response => {
-                
-                dispatch({
-                    type: 'ADD_USER',
-                    payload: user
-                    
-                })       
-            }).catch(error => {
-                console.error(error);
-            })*/
 }
 
 export const deleteUserR =  (id) => {
@@ -59,17 +32,6 @@ export const deleteUserR =  (id) => {
         payload: id
     }
 
-    /*
-        await axios.delete('http://localhost:3000/users/' + id)
-            .then(response => {
-                dispatch({
-                    type: 'DELETE_USER',
-                    payload: id
-                }) 
-            }).catch(error => {
-                console.error(error);
-            })
-            */
 
 }
 
@@ -79,19 +41,6 @@ export const changeIsActiveR = (id) => {
         payload: id
     }
 
-    /*
-        await axios.put('http://localhost:3000/users/' + user.id, {
-            ...user,
-            isActive : !user.isActive
-        }).then(response => {
-            dispatch({
-                type: 'CHANGE_IS_ACTIVE',
-                payload: user.id
-            }) 
-        }).catch(error => {
-            console.error(error);
-        })
-        */
 }
 
     

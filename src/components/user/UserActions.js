@@ -6,7 +6,7 @@ import { deleteUserR, changeIsActiveR } from '../../redux/actions/userActions';
 import { Tooltip, IconButton } from '@material-ui/core';
 import { Delete, Close, Done } from '@material-ui/icons';
 
-import UserContext from '../../context/user/UserContext'
+// * import UserContext from '../../context/user/UserContext'
 
 const UserActions = ({user}) => {
 

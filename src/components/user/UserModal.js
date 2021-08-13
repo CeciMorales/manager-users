@@ -8,7 +8,7 @@ import axios from 'axios';
 import { Button, Modal, TextField, FormControlLabel } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
 
-import UserContext from '../../context/user/UserContext'
+// * import UserContext from '../../context/user/UserContext'
 
 const UserModal = (props) => {
 

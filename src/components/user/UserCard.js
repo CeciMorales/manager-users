@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { Tooltip, IconButton } from '@material-ui/core';
 import { Delete, Close, Done } from '@material-ui/icons';
 
-import UserContext from '../../context/user/UserContext'
+// *import UserContext from '../../context/user/UserContext'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -50,11 +50,12 @@ const UserCard = () => {
     const theme = useTheme();
     const {id} = useParams();
 
-    //const { getUser, selectedUser, changeIsActive } = useContext(UserContext);
+    // * const { getUser, selectedUser, changeIsActive } = useContext(UserContext);
 
     // ! cosas de redux
     const selectedUserRedux = useSelector((state) => state.allUsers.selectedUser);
     const dispatch = useDispatch();
+
     const fetchUser = async (id) => {
         await axios.get('http://localhost:3000/users/' + id)
         .then(response => {
@@ -110,21 +111,21 @@ const UserCard = () => {
                         } 
                     </Typography>
                     <div className="right-side">
-                    {
+                    {/**{
                     selectedUserRedux.isActive
                     ?
                         <Tooltip title="desactivar">
-                        <IconButton onClick={clickHandler}>
+                        <IconButton onClick={() => clickHandler()}>
                             <Close></Close>
                         </IconButton>
                         </Tooltip>
                     :
                         <Tooltip title="activar">
-                        <IconButton onClick={clickHandler}>
+                        <IconButton onClick={() => clickHandler()}>
                             <Done></Done>
                         </IconButton>
                         </Tooltip>
-                    } 
+                    } **/}
                     </div>
                     </CardContent>
                     <div className={classes.controls}>

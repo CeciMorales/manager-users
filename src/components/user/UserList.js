@@ -8,7 +8,7 @@ import axios from 'axios';
 import User from './User'
 import UserPagination from './UserPagination';
 import UserFilter from './UserFilter';
-import UserContext from '../../context/user/UserContext'
+// * import UserContext from '../../context/user/UserContext'
 
 const UserList = () => {
 
@@ -18,7 +18,7 @@ const UserList = () => {
     const [ searchTermInput, setSearchTermInput ] = useState('');
     const [ searchTermIsActive, setSearchTermIsActive ] = useState('all');
 
-    // const { users, getUsers} = useContext(UserContext); context
+    // * const { users, getUsers} = useContext(UserContext); context
 
     // ! cosas de redux
     // obtiene users del state
